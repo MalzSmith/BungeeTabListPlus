@@ -148,4 +148,17 @@ public class API extends BungeeTabListPlusAPI {
         BungeePlayer bungeePlayer = BungeeTabListPlus.getInstance().getBungeePlayerProvider().getPlayerIfPresent(player);
         return bungeePlayer != null && bungeePlayer.get(BTLPBungeeDataKeys.DATA_KEY_IS_HIDDEN);
     }
+
+    @Override
+    protected void hidePlayer0(ProxiedPlayer player, boolean value) {
+        BungeePlayer bungeePlayer = BungeeTabListPlus.getInstance().getBungeePlayerProvider().getPlayer(player);
+        if (value == Boolean.TRUE.equals(bungeePlayer.get(BTLPBungeeDataKeys.DATA_KEY_IS_HIDDEN_PLAYER_COMMAND))) {
+            return;
+        }
+        if (value) {
+            bungeePlayer.getLocalDataCache().updateValue(BTLPBungeeDataKeys.DATA_KEY_IS_HIDDEN_PLAYER_COMMAND, true);
+        } else {
+            bungeePlayer.getLocalDataCache().updateValue(BTLPBungeeDataKeys.DATA_KEY_IS_HIDDEN_PLAYER_COMMAND, false);
+        }
+    }
 }

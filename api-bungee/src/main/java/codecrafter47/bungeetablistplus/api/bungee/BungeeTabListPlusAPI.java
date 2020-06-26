@@ -161,4 +161,17 @@ public abstract class BungeeTabListPlusAPI {
     }
 
     protected abstract boolean isHidden0(ProxiedPlayer player);
+
+    /**
+     * Hides or unhides a player, similar to the /btlp hide command
+     *
+     * @param player the player
+     * @param value player will be hidden if true, not hidden if false
+     */
+    public static void hidePlayer(ProxiedPlayer player, boolean value) {
+        Preconditions.checkState(instance != null, "BungeeTabListPlus not initialized");
+        instance.hidePlayer0(player, value);
+    }
+
+    protected abstract void hidePlayer0(ProxiedPlayer player, boolean value);
 }
